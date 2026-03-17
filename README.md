@@ -19,3 +19,15 @@ A basic model containing features chosen by LASSO was built. Previous studies ha
 To further analyze the dependencies on the socio-economic predictors, an interaction model was built. A final model added the three-way interaction term (education × unemployment × poverty) that allow us to examine whether the effect of education on recidivism changes at different levels of unemployment or poverty, reflecting compounding structural disadvantage.
 
 All models were trained on a sample size of data that included 266677 circuit court cases from Wisconsin.
+
+---
+
+## Results
+
+This analysis evaluated how individual-level criminal justice variables and county-level socioeconomic conditions jointly influence two-year recidivism outcomes in Wisconsin. The final dataset consisting of 266,677 criminal cases from Wisconsin (restricted to years 2008–2012) was trained on three different models, namely a Basic model consisting of predictors selected by LASSO, an interaction model consisting of a term that combines education index, Poverty rate and Unemployment rate and a reduced interaction model with a minimal number of predictors compared to the interaction model.
+
+There were several predictors that were statistically significant at the 0.05 level. As the sample size is large, the inflated p-value issue was addressed by using the sub-sampling approach using a 20\% and 30\% subset of the training data.The basic model was re-estimated across these subsamples and some variables edu\_index, case\_Type, unemployment and poverty sometimes showed lower statistical significance. Other variables seem to consistently show lower p-values. This could be due to the fact that these variables are correlated with median household income and Urban Influence codes. Although the VIF value suggests the absence of multicollinearity in the basic model, the EDA suggested medium to strong correlations between Unemployment and poverty (0.41), Education and Unemployment (-0.47). Thus, two interaction models were built to account for the compounding effects with some of these variables removed and combining the socioeconomic variables as an interaction term.
+
+The reduced interaction model demonstrated the strongest predictive performance (AUC = 0.687, Accuracy = 0.659), outperforming both the baseline model without interactions (AUC = 0.672) and the full interaction model (AUC = 0.672). The Sensitivity and Specificity of the reduced model were 0.334 and 0.869 respectively.
+
+Although individual level variables have a stronger contribution to change in odds of recidivism, there was a small but significant contribution by socioeconomic variables towards recidivism after inclusion of the interaction terms. Although the primary goal of the analysis is to understand the effects of socioeconomic factors and not maximize predictive power, model performance metrics indicate that incorporating interaction effects between unemployment, poverty, and educational attainment not only provides deeper insight into contextual contributors to recidivism, but also slightly improves predictive accuracy. 
